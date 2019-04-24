@@ -51,7 +51,9 @@ XEN_BRANCH="$2"
 XEN_SRCREV=$(git ls-remote --heads "git://${REPOHOST_XEN}/xen.git" "refs/heads/${XEN_BRANCH}" | cut -f1 -d'	')
 
 if [ -z "${XEN_SRCREV}" ] ; then
-    echo >&2 "Error: failed to find specified branch ${XEN_BRANCH} in Xen repository."
+    echo >&2 "Error: failed to find specified branch \"${XEN_BRANCH}\" in the Xen repository."
+    echo >&2 "Available branches are:"
+    git ls-remote --heads git://${REPOHOST_XEN}/xen.git | sed -ne 's/^.*refs\/heads\/\([^/]*\)$/\1/p' >&2
     exit 3
 fi
 
