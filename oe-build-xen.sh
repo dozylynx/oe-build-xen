@@ -60,7 +60,7 @@ fi
 XEN_REL=$(echo "${XEN_BRANCH}" | sed -ne 's/^.*-//p')
 if [ -z "${XEN_REL}" ] ; then
     # Since the branch name didn't contain version information, determine the next major release:
-    LAST_STABLE_RELEASE=$(git ls-remote --heads git://xenbits.xen.org/xen.git | cut -f2 -d'	' | sort -V | tail -1 | sed 's/^.*-//')
+    LAST_STABLE_RELEASE=$(git ls-remote --heads git://${REPOHOST_XEN}/xen.git | cut -f2 -d'	' | sort -V | tail -1 | sed 's/^.*-//')
     MAJOR_VERSION=$(echo $LAST_STABLE_RELEASE | cut -f1 -d.)
     MINOR_VERSION=$(echo $LAST_STABLE_RELEASE | cut -f2 -d.)
     NEXT_MINOR_VERSION=$(( $(echo "${MINOR_VERSION}" | cut -f2 -d.) + 1 ))
