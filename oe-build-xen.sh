@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (c) 2019 BAE Systems
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
@@ -74,7 +74,6 @@ git clone --branch "${OE_RELEASE}" "${SPEEDUP}" "git://${REPOHOST_OE}/meta-opene
 
 # Initialize state and conf directory
 source ./oe-init-build-env build
-cd build
 
 #---
 # bblayers.conf: add the necessary layers
@@ -115,7 +114,8 @@ EOF
 #---
 # local.conf: add the necessary variable definitions
 
-cat >>conf/local.conf <<EOF
+[ -f "conf/local.conf.template" ] || mv conf/local.conf conf/local.conf.template
+cat conf/local.conf.template - >conf/local.conf <<EOF
 
 MACHINE = "${MACHINE}"
 DISTRO_FEATURES_append = " virtualization xen"
