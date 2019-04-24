@@ -97,7 +97,10 @@ done
 # Since we're specifying the exact version of Xen that is to be built,
 # write a custom Xen recipe to do so.
 
-cd ../meta-virtualization/recipes-extended/xen
+XEN_RECIPE_DIR="../meta-virtualization/recipes-extended/xen"
+rm -rf "${XEN_RECIPE_DIR}"
+mkdir "${XEN_RECIPE_DIR}"
+cd "${XEN_RECIPE_DIR}"
 
 cat >xen_git.bb <<EOF
 require xen.inc
