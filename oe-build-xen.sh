@@ -115,7 +115,7 @@ PV = "\${XEN_REL}+git\${SRCPV}"
 
 S = "\${WORKDIR}/git"
 
-SRC_URI = "git://xenbits.xen.org/xen.git;branch=\${XEN_BRANCH}"
+SRC_URI = "git://${REPOHOST_XEN}/xen.git;branch=\${XEN_BRANCH}"
 EOF
 
 # Obtain the dependent Xen recipes files from the tip of master:
