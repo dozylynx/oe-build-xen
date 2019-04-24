@@ -95,7 +95,9 @@ done
 # Since we're specifying the exact version of Xen that is to be built,
 # write a custom Xen recipe to do so.
 
-cat >../meta-virtualization/recipes-extended/xen/xen_git.bb <<EOF
+cd ../meta-virtualization/recipes-extended/xen
+
+cat >xen_git.bb <<EOF
 require xen.inc
 
 SRCREV ?= "${XEN_SRCREV}"
@@ -110,6 +112,12 @@ S = "\${WORKDIR}/git"
 
 SRC_URI = "git://xenbits.xen.org/xen.git;branch=\${XEN_BRANCH}"
 EOF
+
+# Obtain the dependent Xen recipes files from the tip of master:
+# they are maintained as backwards compatible.
+git checkout master -- xen.inc xen-arch.inc
+
+cd -
 
 #---
 # local.conf: add the necessary variable definitions
